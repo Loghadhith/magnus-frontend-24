@@ -1,5 +1,6 @@
 "use client";
 
+import { IconMenu2, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,50 +18,31 @@ export default function NavBar() {
 
   return (
     <nav
-      className={`
-        flex justify-between items-center w-full p-8 fixed top-0 z-[999] bg-nocl font-filgen ${
-          activeNav &&
-          "bg-white drop-shadow-md transition-all duration-200 ease-in"
-        }
-      `}
+      className={`flex justify-end items-center transition-all duration-200 ease-in w-full p-10 fixed top-0 z-[999] bg-nocl font-filgen`}
     >
-      <Link href="/" className="text-3xl font-extrabold font-glb">
-      Magnus
-      </Link>
-
       <section
-        className={`
-          ${!isOpen ? "-right-[1000px]" : "right-0"}
-          top-0 absolute md:static bg-white md:bg-nocl h-screen w-full md:w-auto md:h-auto flex items-end justify-center transition-all p-8 md:p-0
-          text-right text-6xl md:text-xl md:space-x-3 flex-col md:flex-row
-        `}
+        className={`absolute top-0 text-right w-full h-screen flex flex-col items-end p-12 lg:p-24 text-7xl font-black justify-center bg-white ${!isOpen ? "-right-[5000px]" : "right-0"} transition-all duration-500 ease-in-out drop-shadow-lg`}
       >
+        <Link href="/about">
+          <h1 className="hover:text-accent">Home</h1>
+        </Link>
         <Link href="/about">
           <h1 className="hover:text-accent">About</h1>
         </Link>
         <Link href="/events">
           <h1 className="hover:text-accent">Events</h1>
         </Link>
-        <Link href="/upcoming-events">
-          <h1 className="hover:text-accent">Upcoming</h1>
-        </Link>
-        <Link href="/socials">
-          <h1 className="hover:text-accent">Socials</h1>
-        </Link>
         <Link href="/team">
           <h1 className="hover:text-accent">Team</h1>
         </Link>
-        <div className="md:hidden block">hola</div>
       </section>
 
       <div className="flex items-center gap-x-2">
-        {/* <ProfileIcon /> */}
-        <div className="hidden md:block">{/* <GitHubLogin /> */}</div>
         <h1
           onClick={() => setOpen(!isOpen)}
-          className="cursor-pointer text-3xl md:hidden z-[1000]"
+          className={`cursor-pointer text-3xl z-[1000] rounded-full ${activeNav && "bg-white"} p-3`}
         >
-          {isOpen ? "x" : "="}
+          {isOpen ? <IconX /> : <IconMenu2 />}
         </h1>
       </div>
     </nav>
